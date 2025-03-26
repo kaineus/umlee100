@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -91,20 +93,14 @@ function ProjectCard({ project }: ProjectCardProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
       
-      <div className="p-6">
-        <div className="flex justify-between items-start mb-2">
-          <div>
-            <h3 className="text-xl font-bold group-hover:text-blue-600 transition-colors">{project.title}</h3>
-            <p className="text-sm text-gray-500 mb-2">{project.category} | {project.client} | {project.year}</p>
-          </div>
-          <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
-            {project.category}
-          </span>
-        </div>
-        
-        <p className="text-gray-600 mb-4 line-clamp-3">{project.description}</p>
-        
-        <Link href={project.link} className="inline-flex items-center text-blue-600 font-medium">
+      <div className="p-4">
+        <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+        <p className="text-sm text-gray-600 mb-4">{project.client} · {project.year}</p>
+        <p className="text-gray-700 mb-4">{project.description}</p>
+        <Link 
+          href={`/web-design/${project.id}`}
+          className="inline-flex items-center text-blue-600 hover:text-blue-800 group"
+        >
           더 보기 <span className="ml-1 group-hover:ml-2 transition-all">→</span>
         </Link>
       </div>

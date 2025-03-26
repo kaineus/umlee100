@@ -1,16 +1,22 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FiArrowRight } from 'react-icons/fi';
+import Model3D from '../components/Model3D';
 
 // 프로젝트 데이터
 const projects = [
   {
     id: 1,
-    title: '제품 3D 렌더링',
-    category: '제품 디자인',
-    client: '전자제품 브랜드',
-    year: '2023',
-    description: '신제품 출시 전 마케팅 자료로 활용할 수 있는 고품질 3D 렌더링 작업입니다. 제품의 디테일과 질감을 사실적으로 표현하는 데 중점을 두었습니다.',
-    imageUrl: '/images/3d-work-1.jpg',
+    title: '델피노 리조트',
+    category: 'character',
+    client: '개인 프로젝트',
+    year: '2024',
+    tags: ['리조트', '3D 모델링', '블렌더'],
+    description: '델피노 리조트의 3D 모델링 작업입니다. 리조트의 특색을 살린 디자인으로 제작했습니다.',
+    imageUrl: '/models/delphino.glb',
     link: '/3d-works/1'
   },
   {
@@ -58,55 +64,34 @@ export default function ThreeDWorks() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-interface ProjectCardProps {
-  project: {
-    id: number;
-    title: string;
-    category: string;
-    client: string;
-    year: string;
-    description: string;
-    imageUrl: string;
-    link: string;
-  };
-}
-
-function ProjectCard({ project }: ProjectCardProps) {
-  return (
-    <div className="group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
-      <div className="relative h-64 overflow-hidden">
-        <Image
-          src={project.imageUrl}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
-      
-      <div className="p-6">
-        <div className="flex justify-between items-start mb-2">
-          <div>
-            <h3 className="text-xl font-bold group-hover:text-purple-600 transition-colors">{project.title}</h3>
-            <p className="text-sm text-gray-500 mb-2">{project.category} | {project.client} | {project.year}</p>
+          <div key={project.id} className="group">
+            <div className="relative overflow-hidden rounded-lg bg-gray-100">
+              {project.category === 'character' ? (
+                <Model3D url={project.imageUrl} />
+              ) : (
+                <Image
+                  src={project.imageUrl}
+                  alt={project.title}
+                  width={600}
+                  height={400}
+                  className="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              )}
+            </div>
+            
+            <div className="p-4">
+              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+              <p className="text-sm text-gray-600 mb-4">{project.client} · {project.year}</p>
+              <p className="text-gray-700 mb-4">{project.description}</p>
+              <Link 
+                href={`/3d-works/${project.id}`}
+                className="inline-flex items-center text-blue-600 hover:text-blue-800 group"
+              >
+                더 보기 <span className="ml-1 group-hover:ml-2 transition-all">→</span>
+              </Link>
+            </div>
           </div>
-          <span className="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">
-            {project.category}
-          </span>
-        </div>
-        
-        <p className="text-gray-600 mb-4 line-clamp-3">{project.description}</p>
-        
-        <Link href={project.link} className="inline-flex items-center text-purple-600 font-medium">
-          더 보기 <span className="ml-1 group-hover:ml-2 transition-all">→</span>
-        </Link>
+        ))}
       </div>
     </div>
   );
