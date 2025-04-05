@@ -1,97 +1,112 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { FiArrowRight } from 'react-icons/fi';
+import Image from 'next/image';
 import Model3D from '../components/Model3D';
+import { projectsData } from '../data/projects';
+import { isR2Url } from '../lib/r2-config';
+import { FaCube } from 'react-icons/fa';
 
-// 프로젝트 데이터
-const projects = [
-  {
-    id: 1,
-    title: '델피노 리조트',
-    category: 'character',
-    client: '개인 프로젝트',
-    year: '2024',
-    tags: ['리조트', '3D 모델링', '블렌더'],
-    description: '델피노 리조트의 3D 모델링 작업입니다. 리조트의 특색을 살린 디자인으로 제작했습니다.',
-    imageUrl: '/models/delphino.glb',
-    link: '/3d-works/1'
-  },
-  {
-    id: 2,
-    title: '건축 시각화',
-    category: '건축',
-    client: '인테리어 디자인 회사',
-    year: '2023',
-    description: '신축 주택의 인테리어 디자인을 3D로 시각화한 프로젝트입니다. 공간감과 조명 효과를 통해 실제 완공 후의 모습을 사전에 경험할 수 있도록 구현했습니다.',
-    imageUrl: '/images/3d-work-2.jpg',
-    link: '/3d-works/2'
-  },
-  {
-    id: 3,
-    title: '캐릭터 모델링',
-    category: '캐릭터 디자인',
-    client: '게임 개발사',
-    year: '2022',
-    description: '모바일 게임에 등장하는 캐릭터의 3D 모델링 작업입니다. 귀엽고 친근한 이미지와 게임 내 움직임을 고려한 디자인으로 제작했습니다.',
-    imageUrl: '/images/3d-work-3.jpg',
-    link: '/3d-works/3'
-  },
-  {
-    id: 4,
-    title: '제품 애니메이션',
-    category: '애니메이션',
-    client: '가전제품 브랜드',
-    year: '2022',
-    description: '신제품의 주요 기능을 설명하는 3D 애니메이션 작업입니다. 복잡한 메커니즘을 시각적으로 이해하기 쉽게 표현했습니다.',
-    imageUrl: '/images/3d-work-4.jpg',
-    link: '/3d-works/4'
-  },
-];
+// 카테고리 목록 생성 (중복 제거)
+const allCategories = Array.from(
+  new Set(projectsData.flatMap(project => project.categories))
+);
 
-export default function ThreeDWorks() {
+export default function Works3DPage() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  // 선택된 카테고리에 따라 프로젝트 필터링
+  const filteredProjects = selectedCategory
+    ? projectsData.filter(project => project.categories.includes(selectedCategory))
+    : projectsData;
+
   return (
-    <div className="container mx-auto px-4 py-12">
-      <header className="mb-12 text-center">
-        <h1 className="text-4xl font-bold mb-4">3D 작업물</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          사실적인 표현과 창의적인 접근으로 만든 다양한 3D 프로젝트입니다.
-          제품 렌더링부터 건축 시각화, 캐릭터 모델링까지 다양한 분야의 작업물을 선보입니다.
-        </p>
-      </header>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {projects.map((project) => (
-          <div key={project.id} className="group">
-            <div className="relative overflow-hidden rounded-lg bg-gray-100">
-              {project.category === 'character' ? (
-                <Model3D url={project.imageUrl} />
-              ) : (
-                <Image
-                  src={project.imageUrl}
-                  alt={project.title}
-                  width={600}
-                  height={400}
-                  className="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              )}
-            </div>
-            
-            <div className="p-4">
-              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-              <p className="text-sm text-gray-600 mb-4">{project.client} · {project.year}</p>
-              <p className="text-gray-700 mb-4">{project.description}</p>
-              <Link 
-                href={`/3d-works/${project.id}`}
-                className="inline-flex items-center text-blue-600 hover:text-blue-800 group"
-              >
-                더 보기 <span className="ml-1 group-hover:ml-2 transition-all">→</span>
-              </Link>
-            </div>
-          </div>
-        ))}
+    <div className="container mx-auto px-4 py-16 mt-20">
+      <h1 className="text-4xl font-bold mb-8">3D 작업물</h1>
+      
+      {/* 카테고리 필터 */}
+      <div className="mb-8">
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => setSelectedCategory(null)}
+            className={`px-4 py-2 rounded-full text-sm font-medium ${
+              selectedCategory === null
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+            }`}
+          >
+            전체
+          </button>
+          
+          {allCategories.map(category => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-4 py-2 rounded-full text-sm font-medium ${
+                selectedCategory === category
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+      
+      {/* 프로젝트 그리드 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {filteredProjects.map(project => {
+          const hasR2Model = isR2Url(project.modelUrl);
+          
+          return (
+            <Link 
+              href={`/3d-works/${project.id}`} 
+              key={project.id}
+              className="group"
+            >
+              <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="h-60 relative overflow-hidden">
+                  {project.imageUrl ? (
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-200 flex flex-col items-center justify-center">
+                      <FaCube size={48} className="text-gray-400 mb-2" />
+                      <p className="text-gray-500">이미지 없음</p>
+                    </div>
+                  )}
+                </div>
+                
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">
+                    {project.title}
+                  </h3>
+                  
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {project.categories.slice(0, 3).map((category, index) => (
+                      <span 
+                        key={index} 
+                        className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
+                      >
+                        {category}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <div className="text-gray-600 text-sm line-clamp-2">
+                    {project.description.replace(/<[^>]*>?/gm, '').trim().split('.')[0]}.
+                  </div>
+                </div>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

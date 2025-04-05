@@ -1,42 +1,51 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, GizmoHelper, GizmoViewport } from '@react-three/drei';
+import { OrbitControls, useGLTF } from '@react-three/drei';
 import { Suspense } from 'react';
+import { isR2Url, extractR2Key, getR2PublicUrl } from '../lib/r2-config';
 
+// 모델 컴포넌트
 function Model({ url }: { url: string }) {
-  const { scene } = useGLTF(url);
-  return <primitive object={scene} scale={0.5} position={[0, -1, 0]} />;
+  // R2 URL 처리
+  const processedUrl = isR2Url(url)
+    ? getR2PublicUrl(extractR2Key(url))
+    : url;
+
+  try {
+    const { scene } = useGLTF(processedUrl);
+    return <primitive object={scene} scale={0.8} position={[0, 0, 0]} />;
+  } catch (err) {
+    console.error('모델 로딩 실패:', err);
+    return (
+      <mesh>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color="red" />
+      </mesh>
+    );
+  }
 }
 
 export default function Model3D({ url }: { url: string }) {
   return (
-    <div className="w-full h-[300px] bg-gray-100 rounded-lg overflow-hidden">
+    <div className="w-full h-full bg-gray-100 rounded-lg overflow-hidden">
       <Canvas
-        camera={{ position: [0, 5, 40], fov: 25 }}
-        style={{ background: '#f3f4f6' }}
+        camera={{ position: [0, 0, 15], fov: 35 }}
+        style={{ background: 'linear-gradient(to bottom, #f3f4f6, #e5e7eb)' }}
       >
-        <ambientLight intensity={0.7} />
+        <ambientLight intensity={0.8} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <Suspense fallback={null}>
           <Model url={url} />
         </Suspense>
-        <OrbitControls
+        <OrbitControls 
           enableZoom={true}
           enablePan={true}
-          minDistance={30}
-          maxDistance={120}
-          minAzimuthAngle={-Math.PI}
-          maxAzimuthAngle={Math.PI}
-          minPolarAngle={Math.PI / 6}
-          maxPolarAngle={Math.PI - Math.PI / 6}
+          autoRotate={true}
+          autoRotateSpeed={0.5}
+          minDistance={10}
+          maxDistance={40}
         />
-        <GizmoHelper
-          alignment="bottom-right"
-          margin={[80, 80]}
-        >
-          <GizmoViewport axisColors={['red', 'green', 'blue']} labelColor="black" />
-        </GizmoHelper>
       </Canvas>
     </div>
   );

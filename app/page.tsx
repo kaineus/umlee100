@@ -1,7 +1,18 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
+import { FiArrowRight } from 'react-icons/fi';
+import ImageSkeleton from './components/ImageSkeleton';
 
 export default function Home() {
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+
+  const handleImageError = (id: string) => {
+    setImageErrors(prev => ({ ...prev, [id]: true }));
+  };
+
   return (
     <>
       {/* 히어로 섹션 */}
@@ -14,7 +25,7 @@ export default function Home() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               <span className="block">안녕하세요,</span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-600">
-                이엄지입니다
+                이엄지<span className="text-black">입니다</span>
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-neutral-700 mb-8">
@@ -24,8 +35,8 @@ export default function Home() {
               <Link href="/web-design" className="px-6 py-3 bg-neutral-900 text-white rounded-full hover:bg-neutral-800 transition-colors">
                 작업물 보기
               </Link>
-              <Link href="/contact" className="px-6 py-3 bg-white border border-neutral-300 rounded-full hover:bg-neutral-100 transition-colors">
-                연락하기
+              <Link href="/about" className="px-6 py-3 bg-white border border-neutral-300 rounded-full hover:bg-neutral-100 transition-colors">
+                프로필 보기
               </Link>
             </div>
           </div>
@@ -42,12 +53,16 @@ export default function Home() {
               description="직관적이고 아름다운 UI/UX를 바탕으로 사용자 경험을 향상시키는 웹 디자인"
               image="/images/web-design-feature.jpg"
               link="/web-design"
+              handleImageError={() => handleImageError('web-design')}
+              imageError={imageErrors['web-design']}
             />
             <FeaturedWork 
               title="3D 작업물" 
               description="창의적인 아이디어를 현실감 있는 3D 모델과 애니메이션으로 표현"
               image="/images/3d-feature.jpg"
               link="/3d-works"
+              handleImageError={() => handleImageError('3d-works')}
+              imageError={imageErrors['3d-works']}
             />
           </div>
         </div>
@@ -57,29 +72,95 @@ export default function Home() {
       <section className="py-20 bg-neutral-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">기술 스택</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <SkillCard name="Figma" icon="🎨" />
-            <SkillCard name="Adobe XD" icon="📱" />
-            <SkillCard name="Photoshop" icon="🖌️" />
-            <SkillCard name="Illustrator" icon="✏️" />
-            <SkillCard name="Blender" icon="💎" />
-            <SkillCard name="Cinema 4D" icon="🎬" />
-            <SkillCard name="HTML/CSS" icon="🌐" />
-            <SkillCard name="JavaScript" icon="💻" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="bg-white py-1 px-4 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
+              <div className="w-full h-36 relative">
+                <Image 
+                  src="/images/skills/photoshop.png" 
+                  alt="Photoshop" 
+                  fill 
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <div className="bg-white py-1 px-4 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
+              <div className="w-full h-36 relative">
+                <Image 
+                  src="/images/skills/cad.png" 
+                  alt="CAD" 
+                  fill 
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <div className="bg-white py-1 px-4 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
+              <div className="w-full h-36 relative">
+                <Image 
+                  src="/images/skills/excel.png" 
+                  alt="Excel" 
+                  fill 
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <div className="bg-white py-1 px-4 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
+              <div className="w-full h-36 relative">
+                <Image 
+                  src="/images/skills/powerpoint.png" 
+                  alt="PowerPoint" 
+                  fill 
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <div className="bg-white py-1 px-4 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
+              <div className="w-full h-36 relative">
+                <Image 
+                  src="/images/skills/gongbuilder.png" 
+                  alt="GongBuilder" 
+                  fill 
+                  className="object-contain"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 연락하기 섹션 */}
-      <section className="py-20 bg-gradient-to-r from-blue-500 to-violet-500 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">프로젝트를 함께 할 준비가 되셨나요?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            새로운 프로젝트나 협업 기회에 대해 언제든지 연락주세요.
-          </p>
-          <Link href="/contact" className="px-8 py-4 bg-white text-blue-600 rounded-full font-semibold hover:bg-neutral-100 transition-colors inline-block">
-            연락하기
-          </Link>
+      {/* 경력 하이라이트 섹션 */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-12 text-center">경력 하이라이트</h2>
+          <div className="max-w-3xl mx-auto space-y-6">
+            <div className="flex flex-col md:flex-row p-6 bg-neutral-50 rounded-lg shadow-sm">
+              <div className="md:w-1/3 mb-4 md:mb-0">
+                <p className="font-medium text-gray-700">2020.06 - 2024.01</p>
+              </div>
+              <div className="md:w-2/3">
+                <h3 className="text-xl font-semibold mb-2">(주)플럭시티</h3>
+                <p className="text-gray-600">DX콘텐츠그룹 콘텐츠팀 대리</p>
+              </div>
+            </div>
+            
+            <div className="flex flex-col md:flex-row p-6 bg-neutral-50 rounded-lg shadow-sm">
+              <div className="md:w-1/3 mb-4 md:mb-0">
+                <p className="font-medium text-gray-700">2013.02</p>
+              </div>
+              <div className="md:w-2/3">
+                <h3 className="text-xl font-semibold mb-2">서일대학교</h3>
+                <p className="text-gray-600">생활가구디자인과</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link 
+              href="/about" 
+              className="inline-flex items-center text-blue-600 hover:text-blue-800"
+            >
+              더 자세한 경력 보기 <span className="ml-2"><FiArrowRight /></span>
+            </Link>
+          </div>
         </div>
       </section>
     </>
@@ -92,19 +173,26 @@ interface FeaturedWorkProps {
   description: string;
   image: string;
   link: string;
+  handleImageError: () => void;
+  imageError: boolean;
 }
 
-function FeaturedWork({ title, description, image, link }: FeaturedWorkProps) {
+function FeaturedWork({ title, description, image, link, handleImageError, imageError }: FeaturedWorkProps) {
   return (
     <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all">
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10" />
       <div className="h-[400px] relative">
-        <Image 
-          src={image} 
-          alt={title} 
-          fill 
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-        />
+        {imageError ? (
+          <ImageSkeleton />
+        ) : (
+          <Image 
+            src={image} 
+            alt={title} 
+            fill 
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            onError={handleImageError}
+          />
+        )}
       </div>
       <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
         <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
@@ -113,21 +201,6 @@ function FeaturedWork({ title, description, image, link }: FeaturedWorkProps) {
           더 보기 <span className="ml-1 group-hover:ml-2 transition-all">→</span>
         </Link>
       </div>
-    </div>
-  );
-}
-
-// 기술 스택 카드 컴포넌트
-interface SkillCardProps {
-  name: string;
-  icon: string;
-}
-
-function SkillCard({ name, icon }: SkillCardProps) {
-  return (
-    <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
-      <div className="text-4xl mb-3">{icon}</div>
-      <h3 className="font-medium">{name}</h3>
     </div>
   );
 }
