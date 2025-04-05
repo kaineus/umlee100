@@ -2,17 +2,23 @@
 
 import React from 'react';
 import { projectsData } from '@/app/data/projects';
-import Image from 'next/image';
-import Model3DDetailed from '@/app/components/Model3DDetailed';
 import { isR2Url } from '@/app/lib/r2-config';
 import { FaCube } from 'react-icons/fa';
 import { useParams } from 'next/navigation';
-import { FiArrowLeft, FiExternalLink } from 'react-icons/fi';
-import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
-// 프로젝트 ID로 프로젝트 찾기
+// 동적 import로 Suspense 최적화 (optional)
+const Model3DDetailed = dynamic(() => import('@/app/components/ModelLoader'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center h-full text-gray-500">
+      <FaCube size={40} className="mr-2 animate-spin" />
+      <span>모델 컴포넌트 로딩중...</span>
+    </div>
+  ),
+});
+
 export default function ProjectDetailsPage() {
-  // useParams 훅을 사용하여 id 파라미터 가져오기
   const params = useParams();
   const id = params.id as string;
   const project = projectsData.find((p: any) => p.id === id);
@@ -25,12 +31,13 @@ export default function ProjectDetailsPage() {
     );
   }
 
-  // R2 URL인지 확인
-  const hasR2Model = isR2Url(project.modelUrl);
+  const modelUrl = project.modelUrl;
+  const hasValidModelUrl = modelUrl && (modelUrl.startsWith('http') || isR2Url(modelUrl));
 
   return (
     <div className="container mx-auto px-4 py-12 mt-20">
       <h1 className="text-3xl font-bold mb-6">{project.title}</h1>
+
       <div className="mb-8 flex flex-wrap">
         {project.categories.map((category: string, index: number) => (
           <span
@@ -44,13 +51,13 @@ export default function ProjectDetailsPage() {
 
       <div className="mb-10">
         <div className="h-[500px] md:h-[600px] w-full">
-          {hasR2Model ? (
-            <Model3DDetailed url={project.modelUrl} />
+          {hasValidModelUrl ? (
+            <Model3DDetailed url={modelUrl} />
           ) : (
             <div className="w-full h-full bg-gray-200 rounded-lg flex flex-col items-center justify-center text-gray-600">
               <FaCube size={48} className="mb-4" />
-              <p className="text-xl font-semibold">3D 모델 로딩 대기</p>
-              <p className="mt-2">모델 URL: {project.modelUrl || '지정되지 않음'}</p>
+              <p className="text-xl font-semibold">3D 모델 정보가 없습니다</p>
+              <p className="mt-2">모델 URL: {modelUrl || '지정되지 않음'}</p>
             </div>
           )}
         </div>
@@ -71,4 +78,4 @@ export default function ProjectDetailsPage() {
       </div>
     </div>
   );
-} 
+}
