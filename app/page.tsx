@@ -2,15 +2,21 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import ImageSkeleton from './components/ImageSkeleton';
 
 export default function Home() {
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+  const featuredWorkSectionRef = useRef<HTMLElement>(null);
 
   const handleImageError = (id: string) => {
     setImageErrors(prev => ({ ...prev, [id]: true }));
+  };
+
+  const scrollToFeaturedWorks = (e: React.MouseEvent) => {
+    e.preventDefault();
+    featuredWorkSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -32,9 +38,9 @@ export default function Home() {
               창의적인 웹 디자인과 몰입감 있는 3D 경험을 만드는 디자이너입니다.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/web-design" className="px-6 py-3 bg-neutral-900 text-white rounded-full hover:bg-neutral-800 transition-colors">
+              <button onClick={scrollToFeaturedWorks} className="px-6 py-3 bg-neutral-900 text-white rounded-full hover:bg-neutral-800 transition-colors">
                 작업물 보기
-              </Link>
+              </button>
               <Link href="/about" className="px-6 py-3 bg-white border border-neutral-300 rounded-full hover:bg-neutral-100 transition-colors">
                 프로필 보기
               </Link>
@@ -44,7 +50,7 @@ export default function Home() {
       </section>
 
       {/* 주요 작업 섹션 */}
-      <section className="py-20 bg-white">
+      <section ref={featuredWorkSectionRef} className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">주요 작업</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Model3D from '../components/Model3D';
 import { projectsData } from '../data/projects';
 import { isR2Url } from '../lib/r2-config';
 import { FaCube } from 'react-icons/fa';
@@ -11,7 +10,7 @@ import { FaCube } from 'react-icons/fa';
 // 카테고리 목록 생성 (중복 제거)
 const allCategories = Array.from(
   new Set(projectsData.flatMap(project => project.categories))
-);
+).filter(category => category !== '3D 모델링' && category !== '공빌더');
 
 export default function Works3DPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
