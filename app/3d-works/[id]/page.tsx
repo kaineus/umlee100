@@ -6,13 +6,16 @@ import Image from 'next/image';
 import Model3DDetailed from '@/app/components/Model3DDetailed';
 import { isR2Url } from '@/app/lib/r2-config';
 import { FaCube } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
 import { FiArrowLeft, FiExternalLink } from 'react-icons/fi';
 import Link from 'next/link';
 
 // 프로젝트 ID로 프로젝트 찾기
-export default function ProjectDetailsPage({ params }: { params: { id: string } }) {
-  const project = projectsData.find((p: any) => p.id === params.id);
+export default function ProjectDetailsPage() {
+  // useParams 훅을 사용하여 id 파라미터 가져오기
+  const params = useParams();
+  const id = params.id as string;
+  const project = projectsData.find((p: any) => p.id === id);
 
   if (!project) {
     return (
