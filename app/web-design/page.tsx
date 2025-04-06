@@ -12,7 +12,7 @@ const projects = [
     client: '패션 브랜드 A',
     year: '2023',
     description: '미니멀하고 모던한 감성의 패션 브랜드 웹사이트 리디자인 프로젝트입니다. 사용자 경험과 브랜드 아이덴티티를 강화하는 방향으로 진행했습니다.',
-    imageUrl: '/images/web-design-1.jpg',
+    imageUrl: '/images/web-design-features/thumbnails/르네휘테르 샴푸.jpg',
     link: '/web-design/1'
   },
   {
@@ -22,7 +22,7 @@ const projects = [
     client: '핀테크 스타트업',
     year: '2023',
     description: '직관적이고 사용하기 쉬운 핀테크 앱 UI를 디자인했습니다. 복잡한 금융 정보를 쉽게 이해할 수 있도록 시각화하는 데 중점을 두었습니다.',
-    imageUrl: '/images/web-design-2.jpg',
+    imageUrl: '/images/web-design-features/thumbnails/코코넛오일.jpg',
     link: '/web-design/2'
   },
   {
@@ -32,7 +32,7 @@ const projects = [
     client: '라이프스타일 브랜드',
     year: '2022',
     description: '사용자 중심의 쇼핑 경험을 제공하는 이커머스 웹사이트입니다. 제품을 돋보이게 하는 디자인과 원활한 구매 경험을 제공하는 UI/UX를 구현했습니다.',
-    imageUrl: '/images/web-design-3.jpg',
+    imageUrl: '/images/web-design-features/thumbnails/하리보 젤리.jpg',
     link: '/web-design/3'
   },
   {
@@ -42,7 +42,7 @@ const projects = [
     client: '카페 체인',
     year: '2022',
     description: '카페 브랜드의 아이덴티티와 웹사이트를 동시에 디자인한 프로젝트입니다. 따뜻하고 편안한 브랜드 이미지를 디지털 경험으로 전달하는 데 초점을 맞추었습니다.',
-    imageUrl: '/images/web-design-4.jpg',
+    imageUrl: '/images/web-design-features/thumbnails/팝업광고.jpg',
     link: '/web-design/4'
   },
 ];
@@ -83,7 +83,7 @@ interface ProjectCardProps {
 function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-80 overflow-hidden">
         <Image
           src={project.imageUrl}
           alt={project.title}
