@@ -84,18 +84,24 @@ interface ProjectCardProps {
 function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
-      <div className="relative h-80 overflow-hidden">
-        <Image
-          src={project.imageUrl}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
+      <Link href={`/web-design/${project.id}`}>
+        <div className="relative h-64 overflow-hidden">
+          <Image
+            src={project.imageUrl}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
+      </Link>
       
       <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+        <h3 className="text-xl font-semibold mb-2">
+          <Link href={`/web-design/${project.id}`} className="hover:text-blue-600 transition-colors">
+            {project.title}
+          </Link>
+        </h3>
         <p className="text-sm text-gray-600 mb-4">{project.client} · {project.year}</p>
         <p className="text-gray-700 mb-4">{project.description}</p>
         <Link 
