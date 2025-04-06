@@ -7,17 +7,18 @@ import Link from 'next/link';
 const projects = [
   {
     id: 1,
-    title: '브랜드 웹사이트 리디자인',
+    title: '하리보',
     category: '웹사이트',
     client: '패션 브랜드 A',
     year: '2023',
     description: '미니멀하고 모던한 감성의 패션 브랜드 웹사이트 리디자인 프로젝트입니다. 사용자 경험과 브랜드 아이덴티티를 강화하는 방향으로 진행했습니다.',
-    imageUrl: '/images/web-design-features/thumbnails/르네휘테르 샴푸.jpg',
+    imageUrl: '/images/web-design-features/thumbnails/하리보 젤리.jpg',
+    
     link: '/web-design/1'
   },
   {
     id: 2,
-    title: '모바일 앱 UI 디자인',
+    title: '코코넛오일',
     category: '모바일 앱',
     client: '핀테크 스타트업',
     year: '2023',
@@ -27,17 +28,17 @@ const projects = [
   },
   {
     id: 3,
-    title: '이커머스 웹사이트',
+    title: '르네 휘테르',
     category: '웹사이트',
     client: '라이프스타일 브랜드',
     year: '2022',
     description: '사용자 중심의 쇼핑 경험을 제공하는 이커머스 웹사이트입니다. 제품을 돋보이게 하는 디자인과 원활한 구매 경험을 제공하는 UI/UX를 구현했습니다.',
-    imageUrl: '/images/web-design-features/thumbnails/하리보 젤리.jpg',
+    imageUrl: '/images/web-design-features/thumbnails/르네휘테르 샴푸.jpg',
     link: '/web-design/3'
   },
   {
     id: 4,
-    title: '브랜드 아이덴티티 및 웹디자인',
+    title: '팝업 AD',
     category: '브랜딩',
     client: '카페 체인',
     year: '2022',
