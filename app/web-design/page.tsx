@@ -25,7 +25,7 @@ const projects = [
   },
   {
     id: 3,
-    title: '르네 휘테르',
+    title: '르네휘테르 샴푸',
     category: '웹사이트',
     description: '식물 추출물을 기반으로 만든 이미지에 맞는 청량한 녹색 색감을 바탕으로 제작한 르네휘테르 샴푸 판매 상품페이지 제작 작업입니다.​',
     imageUrl: '/images/web-design-features/thumbnails/르네휘테르 샴푸.jpg',
