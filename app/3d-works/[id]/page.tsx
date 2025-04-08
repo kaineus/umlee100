@@ -4,6 +4,7 @@ import React from 'react';
 import { projectsData } from '@/app/data/projects';
 import { isR2Url } from '@/app/lib/r2-config';
 import { FaCube } from 'react-icons/fa';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
@@ -70,11 +71,19 @@ export default function ProjectDetailsPage() {
 
       <div className="mt-10">
         <h2 className="text-2xl font-bold mb-4">사용한 기술</h2>
-        <ul className="list-disc pl-5 space-y-2">
+        <div className="flex flex-wrap gap-2">
           {project.technologies.map((tech: string, index: number) => (
-            <li key={index}>{tech}</li>
+            <div key={index} className="relative w-12 h-12"> 
+              <Image 
+                src={`/images/skill-icons/${tech}.png`} 
+                alt={tech} 
+                title={tech}
+                fill
+                className="object-contain"
+              />
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );

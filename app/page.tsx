@@ -55,8 +55,8 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-12 text-center">주요 작업</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <FeaturedWork 
-              title="웹 디자인" 
-              description="직관적이고 아름다운 UI/UX를 바탕으로 사용자 경험을 향상시키는 웹 디자인"
+              title="웹 / 컨텐츠 디자인" 
+              description="창의적이고 눈에 띄는 웹 / 컨텐츠 디자인"
               image="/images/thumbnails/main/web-design-feature.jpg"
               link="/web-design"
               handleImageError={() => handleImageError('web-design')}
@@ -64,7 +64,7 @@ export default function Home() {
             />
             <FeaturedWork 
               title="3D 작업물" 
-              description="창의적인 아이디어를 현실감 있는 3D 모델과 애니메이션으로 표현"
+              description="몰입감있는 경험을 만드는 현실감 있는 3D 모델링"
               image="/images/thumbnails/main/3d-feature.jpg"
               link="/3d-works"
               handleImageError={() => handleImageError('3d-works')}

@@ -9,42 +9,37 @@ const projects = [
     id: 1,
     title: '하리보',
     category: '웹사이트',
-    client: '패션 브랜드 A',
-    year: '2023',
-    description: '미니멀하고 모던한 감성의 패션 브랜드 웹사이트 리디자인 프로젝트입니다. 사용자 경험과 브랜드 아이덴티티를 강화하는 방향으로 진행했습니다.',
+    description: '하리보 골드베렌의 상징적인 색감과 인공물을 사용하지 않은 특성을 고려해 디자인한 하리보 판매 상세페이지 작업입니다.',
     imageUrl: '/images/web-design-features/thumbnails/하리보 젤리.jpg',
-    
-    link: '/web-design/1'
+    link: '/web-design/1',
+    tags: ['웹 디자인', '컨텐츠 디자인', '상세페이지']
   },
   {
     id: 2,
     title: '코코넛오일',
     category: '모바일 앱',
-    client: '핀테크 스타트업',
-    year: '2023',
-    description: '직관적이고 사용하기 쉬운 핀테크 앱 UI를 디자인했습니다. 복잡한 금융 정보를 쉽게 이해할 수 있도록 시각화하는 데 중점을 두었습니다.',
+    description: '엑스트라버진 코코넛 오일의 첨가물이 들어있지않은 깨끗한 이미지를 위한 초록색 색감을 사용해 디자인한 판매 상세페이지 작업입니다',
     imageUrl: '/images/web-design-features/thumbnails/코코넛오일.jpg',
-    link: '/web-design/2'
+    link: '/web-design/2',
+    tags: ['웹 디자인', '컨텐츠 디자인', '상세페이지']
   },
   {
     id: 3,
     title: '르네 휘테르',
     category: '웹사이트',
-    client: '라이프스타일 브랜드',
-    year: '2022',
-    description: '사용자 중심의 쇼핑 경험을 제공하는 이커머스 웹사이트입니다. 제품을 돋보이게 하는 디자인과 원활한 구매 경험을 제공하는 UI/UX를 구현했습니다.',
+    description: '식물 추출물을 기반으로 만든 이미지에 맞는 청량한 녹색 색감을 바탕으로 제작한 르네휘테르 샴푸 판매 상품페이지 제작 작업입니다.​',
     imageUrl: '/images/web-design-features/thumbnails/르네휘테르 샴푸.jpg',
-    link: '/web-design/3'
+    link: '/web-design/3',
+    tags: ['웹 디자인', '컨텐츠 디자인', '상세페이지']
   },
   {
     id: 4,
-    title: '팝업 AD',
+    title: '팝업 ADs',
     category: '브랜딩',
-    client: '카페 체인',
-    year: '2022',
-    description: '카페 브랜드의 아이덴티티와 웹사이트를 동시에 디자인한 프로젝트입니다. 따뜻하고 편안한 브랜드 이미지를 디지털 경험으로 전달하는 데 초점을 맞추었습니다.',
+    description: '온라인 쇼핑몰에서 강조하는 이벤트 배너 팝업 및 제품의 홍보를 위한 팝업 광고 이미지 작업입니다. ​',
     imageUrl: '/images/web-design-features/thumbnails/팝업광고.jpg',
-    link: '/web-design/4'
+    link: '/web-design/4',
+    tags: ['웹 디자인', '컨텐츠 디자인', '팝업 AD']
   },
 ];
 
@@ -52,10 +47,9 @@ export default function WebDesign() {
   return (
     <div className="container mx-auto px-4 py-12">
       <header className="mb-12 text-center">
-        <h1 className="text-4xl font-bold mb-4">웹 디자인 프로젝트</h1>
+        <h1 className="text-4xl font-bold mb-4">웹 / 컨텐츠 디자인</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          사용자 중심의 디자인 철학을 바탕으로 한 웹사이트와 모바일 앱 디자인 프로젝트입니다.
-          각 프로젝트는 클라이언트의 요구사항과 사용자의 니즈를 균형 있게 반영하여 최적의 결과물을 도출했습니다.
+          온라인 쇼핑몰에서의 팝업 광고 및 제품 상세페이지를 디자인한 웹 / 컨텐츠 디자인 작업물 입니다. 각 프로젝트는 쇼핑몰에서의 강조하고 싶은 판매 포인트와 제품의 특성을 균형있게 반영하여 최적의 결과물을 제작했습니다.
         </p>
       </header>
 
@@ -73,11 +67,10 @@ interface ProjectCardProps {
     id: number;
     title: string;
     category: string;
-    client: string;
-    year: string;
     description: string;
     imageUrl: string;
     link: string;
+    tags: string[];
   };
 }
 
@@ -102,7 +95,16 @@ function ProjectCard({ project }: ProjectCardProps) {
             {project.title}
           </Link>
         </h3>
-        <p className="text-sm text-gray-600 mb-4">{project.client} · {project.year}</p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag, index) => (
+            <span
+              key={index}
+              className="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
         <p className="text-gray-700 mb-4">{project.description}</p>
         <Link 
           href={`/web-design/${project.id}`}

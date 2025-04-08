@@ -8,6 +8,28 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "이엄지 포트폴리오",
   description: "웹 디자인과 3D 작업물 포트폴리오",
+  openGraph: {
+    title: "이엄지 포트폴리오",
+    description: "웹 디자인과 3D 작업물 포트폴리오",
+    url: "https://umlee100.vercel.app",
+    siteName: "이엄지 포트폴리오",
+    images: [
+      {
+        url: "/preview.jpg",
+        width: 1200,
+        height: 630,
+        alt: "이엄지 포트폴리오 미리보기",
+      },
+    ],
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "이엄지 포트폴리오",
+    description: "웹 디자인과 3D 작업물 포트폴리오",
+    images: ["/preview.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -54,7 +76,7 @@ export default function RootLayout({
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="mb-4 md:mb-0">
-                <p>&copy; 2024 이엄지. All rights reserved.</p>
+                <p>&copy; 2025 이엄지. All rights reserved.</p>
               </div>
               
               <div className="flex space-x-4">
