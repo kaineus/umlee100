@@ -13,7 +13,7 @@ const projects = [
     categories: ['웹사이트', '온라인 쇼핑몰', '상세 페이지'],
     client: '패션 브랜드',
     year: '2024',
-    tags: ['웹 디자인', '반응형', 'E-커머스'],
+    tags: ['웹 디자인', '컨텐츠 디자인', '상세페이지'],
     description: '이 프로젝트는 하리보 골드베렌 판매를 위한 상품페이지 제작 작업입니다. 하리보의 상징적인 색감을 사용해 상품페이지에서 통일성을 주도록 제작하였습니다. 또한 인공 합성물을 사용하지 않고 과일로 맛을 낸 특징을 사용하여 과일 이미지를 같이 배치함으로써 젤리의 색감과 맛을 시각적으로 표현하였습니다.​',
     imageUrl: '/images/web-design-features/thumbnails/하리보 젤리.jpg',
     images: [
@@ -30,7 +30,7 @@ const projects = [
     categories: ['웹사이트', '온라인 쇼핑몰', '상세 페이지'],
     client: '여행 스타트업',
     year: '2023',
-    tags: ['UI/UX 디자인', '웹 개발', '반응형'],
+    tags: ['웹 디자인', '컨텐츠 디자인', '상세페이지'],
     description: '현지 경험을 중심으로 한 여행 예약 플랫폼의 UI/UX 디자인 및 개발 프로젝트입니다.',
     imageUrl: '/images/web-design-features/thumbnails/코코넛오일.jpg',
     images: [
@@ -46,7 +46,7 @@ const projects = [
     categories: ['웹사이트', '온라인 쇼핑몰', '상세 페이지'],
     client: '푸드테크 기업',
     year: '2023',
-    tags: ['모바일 디자인', 'UI/UX', '앱 프로토타입'],
+    tags: ['웹 디자인', '컨텐츠 디자인', '상세페이지'],
     description: '직관적인 사용자 경험을 제공하는 음식 배달 모바일 앱 디자인 프로젝트입니다.',
     imageUrl: '/images/web-design-features/thumbnails/르네휘테르 샴푸.jpg',
     images: [
@@ -64,7 +64,7 @@ const projects = [
     categories: ['웹사이트', '온라인 쇼핑몰', '팝업 AD'],
     client: '컨설팅 회사',
     year: '2022',
-    tags: ['브랜드 아이덴티티', '웹 디자인', '콘텐츠 전략'],
+    tags: ['웹 디자인', '컨텐츠 디자인', '팝업 AD'],
     description: '전문 컨설팅 기업의 브랜드 아이덴티티 개발 및 웹사이트 디자인 프로젝트입니다.',
     imageUrl: '/images/web-design-features/thumbnails/팝업광고.jpg',
     images: [
@@ -153,7 +153,7 @@ export default function WebProjectDetailPage() {
         <h1 className="text-4xl font-bold mb-2">{project.title}</h1>
         
         <div className="flex flex-wrap gap-2 mb-6">
-          {project.categories && project.categories.map((tag: string, index: number) => (
+          {project.tags && project.tags.map((tag: string, index: number) => (
             <span key={index} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
               {tag}
             </span>
