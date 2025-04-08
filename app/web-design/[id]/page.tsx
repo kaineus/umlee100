@@ -153,7 +153,7 @@ export default function WebProjectDetailPage() {
         <h1 className="text-4xl font-bold mb-2">{project.title}</h1>
         
         <div className="flex flex-wrap gap-2 mb-6">
-          {project.tags && project.tags.map((tag: string, index: number) => (
+          {project.categories && project.categories.map((tag: string, index: number) => (
             <span key={index} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
               {tag}
             </span>
