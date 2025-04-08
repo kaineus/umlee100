@@ -87,6 +87,8 @@ const projects = [
       '/images/web-design-features/features/4/image17.jpg',
       '/images/web-design-features/features/4/image18.jpg',
       '/images/web-design-features/features/4/image19.jpg',
+      '/images/web-design-features/features/4/image20.jpg',
+      '/images/web-design-features/features/4/image21.jpg',
     ],
     imageLayout: 'horizontal', // 이미지 레이아웃 (horizontal 또는 vertical)
     technologies: ['PhotoShop'],
