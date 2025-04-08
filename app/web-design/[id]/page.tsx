@@ -251,6 +251,7 @@ export default function WebProjectDetailPage() {
                           <Image 
                             src={`/images/skill-icons/${technology}.png`} 
                             alt={technology} 
+                            title={technology}
                             fill
                             className="object-contain" 
                           />
@@ -397,6 +398,7 @@ export default function WebProjectDetailPage() {
                             <Image 
                               src={`/images/skill-icons/${technology}.png`} 
                               alt={technology} 
+                              title={technology}
                               fill
                               className="object-contain" 
                             />
