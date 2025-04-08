@@ -257,13 +257,6 @@ export default function About() {
           <p className="text-xl text-gray-600 mb-6">
             함께 협업할 수 있는 기회를 기다리고 있습니다!
           </p>
-          <Link 
-            href="/contact" 
-            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
-          >
-            <span className="mr-2">연락하기</span>
-            <FiArrowRight />
-          </Link>
         </div>
       </div>
     </main>
