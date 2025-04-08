@@ -12,7 +12,7 @@ const projects = [
     description: '하리보 골드베렌의 상징적인 색감과 인공물을 사용하지 않은 특성을 고려해 디자인한 하리보 판매 상세페이지 작업입니다.',
     imageUrl: '/images/web-design-features/thumbnails/하리보 젤리.jpg',
     link: '/web-design/1',
-    tags: ['웹 디자인', '컨텐츠 디자인', '상세페이지']
+    tags: ['웹 디자인', '컨텐츠 디자인', '온라인 쇼핑몰', '상세페이지']
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const projects = [
     description: '엑스트라버진 코코넛 오일의 첨가물이 들어있지않은 깨끗한 이미지를 위한 초록색 색감을 사용해 디자인한 판매 상세페이지 작업입니다',
     imageUrl: '/images/web-design-features/thumbnails/코코넛오일.jpg',
     link: '/web-design/2',
-    tags: ['웹 디자인', '컨텐츠 디자인', '상세페이지']
+    tags: ['웹 디자인', '컨텐츠 디자인', '온라인 쇼핑몰', '상세페이지']
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const projects = [
     description: '식물 추출물을 기반으로 만든 이미지에 맞는 청량한 녹색 색감을 바탕으로 제작한 르네휘테르 샴푸 판매 상품페이지 제작 작업입니다.​',
     imageUrl: '/images/web-design-features/thumbnails/르네휘테르 샴푸.jpg',
     link: '/web-design/3',
-    tags: ['웹 디자인', '컨텐츠 디자인', '상세페이지']
+    tags: ['웹 디자인', '컨텐츠 디자인', '온라인 쇼핑몰', '상세페이지']
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ const projects = [
     description: '온라인 쇼핑몰에서 강조하는 이벤트 배너 팝업 및 제품의 홍보를 위한 팝업 광고 이미지 작업입니다. ​',
     imageUrl: '/images/web-design-features/thumbnails/팝업광고.jpg',
     link: '/web-design/4',
-    tags: ['웹 디자인', '컨텐츠 디자인', '팝업 AD']
+    tags: ['웹 디자인', '컨텐츠 디자인', '온라인 쇼핑몰', '팝업 AD']
   },
 ];
 
