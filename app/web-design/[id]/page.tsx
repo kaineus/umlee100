@@ -21,7 +21,7 @@ const projects = [
       '/images/web-design-features/features/1/image2.jpg',
     ],
     imageLayout: 'vertical', // 이미지 레이아웃 (horizontal 또는 vertical)
-    technologies: ['Photoshop', 'Illustrator', 'Figma'],
+    technologies: ['Photoshop'],
     fullDescription: `이 프로젝트는 하리보 골드베렌 판매를 위한 상품페이지 제작 작업입니다. 하리보의 상징적인 색감을 사용해 상품페이지에서 통일성을 주도록 제작하였습니다. 또한 인공 합성물을 사용하지 않고 과일로 맛을 낸 특징을 사용하여 과일 이미지를 같이 배치함으로써 젤리의 색감과 맛을 시각적으로 표현하였습니다.​`,
   },
   {
@@ -37,7 +37,7 @@ const projects = [
       '/images/web-design-features/features/2/image1.jpg'
     ],
     imageLayout: 'vertical', // 이미지 레이아웃 (horizontal 또는 vertical)
-    technologies: ['Photoshop', 'Illustrator', 'Figma', 'HTML', 'CSS'],
+    technologies: ['Photoshop'],
     fullDescription: `이 프로젝트는 코코넛 오일 판매를 위한 상품페이지 제작 작업입니다. 첨가물이 들어있지 않은 100% 코코넛 오일을 표현하기 위해 자연물과 싱그러운 초록색 색감을 사용해 디자인 하였습니다. 익숙하지 않은 코코넛오일을 설명하기 위해 코코넛오일에 대한 설명과 다양한 활용방법을 추가하고, 다양한 용량의 옵션 설명을 통해 원하는 제품을 한눈에 파악하기 쉽도록 가독성에 중점을 두고 작업하였습니다.​`,
   },
   {
@@ -53,7 +53,7 @@ const projects = [
       '/images/web-design-features/features/3/image1.jpg'
     ],
     imageLayout: 'vertical', // 이미지 레이아웃 (horizontal 또는 vertical)
-    technologies: ['Photoshop', 'Illustrator', 'Figma', 'Sketch'],
+    technologies: ['Photoshop'],
     fullDescription: `이 프로젝트는 르네휘테르 샴푸 판매를 위한 상품페이지 제작 작업입니다. 식물 추출물을 기반으로 만든 이미지에 맞는 청량한 녹색 색감을 바탕으로 제작하였습니다.​
 
 르네휘테르 브랜드의 기업모토인 ‘아름다운 모발은 건강한 두피에서' 를 강조 설명하여 전반에 배치하여 디자인했습니다. 또한 샴푸에 들어간 첨가물의 사진을 추가하여 직관적으로 표현하였고, 제품 종류와 각 제품에 대한 설명을 추가하여 본인에게 맞는 샴푸를 선택 할 수 있도록 제작 하였습니다.​`,
@@ -246,14 +246,16 @@ export default function WebProjectDetailPage() {
                   <div className="space-y-4">
                     <div>
                       <p className="text-gray-600 text-sm">사용 기술</p>
-                      <div className="w-12 h-12 relative">
-                        <Image 
-                          src={'/images/skill-icons/photoshop.png'} 
-                          alt={project.client} 
-                          fill
-                          className="object-contain" 
-                        />
-                      </div>
+                      {project.technologies.map((technology: string, index: number) => (
+                        <div key={index} className="w-12 h-12 relative">
+                          <Image 
+                            src={`/images/skill-icons/${technology}.png`} 
+                            alt={technology} 
+                            fill
+                            className="object-contain" 
+                          />
+                        </div>
+                      ))}
                     </div>
                     <div>
                       <p className="text-gray-600 text-sm">카테고리</p>
@@ -390,14 +392,16 @@ export default function WebProjectDetailPage() {
                   <div className="space-y-4">
                     <div>
                       <p className="text-gray-600 text-sm">사용 기술</p>
-                      <div className="w-12 h-12 relative">
-                        <Image 
-                          src={'/images/skill-icons/photoshop.png'} 
-                          alt={project.client} 
-                          fill
-                          className="object-contain" 
-                        />
-                      </div>
+                        {project.technologies.map((technology: string, index: number) => (
+                          <div key={index} className="w-12 h-12 relative">
+                            <Image 
+                              src={`/images/skill-icons/${technology}.png`} 
+                              alt={technology} 
+                              fill
+                              className="object-contain" 
+                            />
+                          </div>
+                        ))}
                     </div>
                     <div>
                       <p className="text-gray-600 text-sm">카테고리</p>
