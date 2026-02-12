@@ -9,11 +9,11 @@ export function ErrorFallback({ error }: { error: Error }) {
     <>
       <mesh>
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="red" />
+        <meshStandardMaterial color="#fb3000" />
       </mesh>
       <Html center>
-        <div className="bg-white p-4 rounded-lg shadow-lg text-center">
-          <p className="text-red-500 font-semibold">
+        <div className="p-4 rounded-lg text-center" style={{ backgroundColor: '#1a1a1a', border: '0.0625rem solid #333' }}>
+          <p className="font-semibold" style={{ color: '#fb3000' }}>
             모델 로딩 실패: {error.message}
           </p>
         </div>
