@@ -1,9 +1,37 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import type { WorkItem } from '../data/works';
+
+function GalleryCard({ work }: { work: WorkItem }) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <Link href={`/works/${work.id}`} className="gallery-card">
+      {!loaded && <div className="skeleton" style={{ position: 'absolute', inset: 0 }} />}
+      <Image
+        src={work.thumbnail}
+        alt={work.title}
+        fill
+        sizes="(max-width: 767px) 50vw, 25vw"
+        className="object-cover"
+        style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
+        onLoad={() => setLoaded(true)}
+      />
+      <div className="gallery-card__overlay">
+        <h3>{work.title}</h3>
+        <div className="gallery-card__tags">
+          {work.tags.map((tag, i) => (
+            <span key={i}>{tag}</span>
+          ))}
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 export default function CategoryGallery({
   items,
@@ -31,23 +59,7 @@ export default function CategoryGallery({
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: index * 0.05 }}
         >
-          <Link href={`/works/${work.id}`} className="gallery-card">
-            <Image
-              src={work.thumbnail}
-              alt={work.title}
-              fill
-              sizes="(max-width: 767px) 100vw, 50vw"
-              className="object-cover"
-            />
-            <div className="gallery-card__overlay">
-              <h3>{work.title}</h3>
-              <div className="gallery-card__tags">
-                {work.tags.map((tag, i) => (
-                  <span key={i}>{tag}</span>
-                ))}
-              </div>
-            </div>
-          </Link>
+          <GalleryCard work={work} />
         </motion.div>
       ))}
     </div>
