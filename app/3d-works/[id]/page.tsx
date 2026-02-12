@@ -8,11 +8,10 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
-// 동적 import로 Suspense 최적화 (optional)
 const Model3DDetailed = dynamic(() => import('@/app/components/ModelLoader'), {
   ssr: false,
   loading: () => (
-    <div className="flex items-center justify-center h-full text-gray-500">
+    <div className="flex items-center justify-center h-full" style={{ color: '#999' }}>
       <FaCube size={40} className="mr-2 animate-spin" />
       <span>모델 컴포넌트 로딩중...</span>
     </div>
@@ -26,8 +25,8 @@ export default function ProjectDetailsPage() {
 
   if (!project) {
     return (
-      <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold mb-6">프로젝트를 찾을 수 없습니다</h1>
+      <div className="section-container py-12" style={{ backgroundColor: '#000' }}>
+        <h1 className="text-3xl font-bold mb-6 text-white">프로젝트를 찾을 수 없습니다</h1>
       </div>
     );
   }
@@ -36,15 +35,12 @@ export default function ProjectDetailsPage() {
   const hasValidModelUrl = modelUrl && (modelUrl.startsWith('http') || isR2Url(modelUrl));
 
   return (
-    <div className="container mx-auto px-4 py-12 mt-20">
-      <h1 className="text-3xl font-bold mb-6">{project.title}</h1>
+    <div className="section-container py-12">
+      <h1 className="text-3xl font-bold mb-6 text-white">{project.title}</h1>
 
       <div className="mb-8 flex flex-wrap">
         {project.categories.map((category: string, index: number) => (
-          <span
-            key={index}
-            className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-          >
+          <span key={index} className="tag-dark mr-2 mb-2">
             {category}
           </span>
         ))}
@@ -55,28 +51,31 @@ export default function ProjectDetailsPage() {
           {hasValidModelUrl ? (
             <Model3DDetailed url={modelUrl} />
           ) : (
-            <div className="w-full h-full bg-gray-200 rounded-lg flex flex-col items-center justify-center text-gray-600">
-              <FaCube size={48} className="mb-4" />
-              <p className="text-xl font-semibold">3D 모델 정보가 없습니다</p>
-              <p className="mt-2">모델 URL: {modelUrl || '지정되지 않음'}</p>
+            <div
+              className="w-full h-full rounded-lg flex flex-col items-center justify-center"
+              style={{ backgroundColor: '#1a1a1a' }}
+            >
+              <FaCube size={48} className="mb-4" style={{ color: '#666' }} />
+              <p className="text-xl font-semibold text-white">3D 모델 정보가 없습니다</p>
+              <p className="mt-2" style={{ color: '#666' }}>모델 URL: {modelUrl || '지정되지 않음'}</p>
             </div>
           )}
         </div>
       </div>
 
-      <div className="prose max-w-none">
-        <h2 className="text-2xl font-bold mb-4">프로젝트 설명</h2>
+      <div className="prose-dark">
+        <h2 className="text-2xl font-bold mb-4 text-white">프로젝트 설명</h2>
         <div dangerouslySetInnerHTML={{ __html: project.description }} />
       </div>
 
       <div className="mt-10">
-        <h2 className="text-2xl font-bold mb-4">사용한 기술</h2>
+        <h2 className="text-2xl font-bold mb-4 text-white">사용한 기술</h2>
         <div className="flex flex-wrap gap-2">
           {project.technologies.map((tech: string, index: number) => (
-            <div key={index} className="relative w-12 h-12"> 
-              <Image 
-                src={`/images/skill-icons/${tech}.png`} 
-                alt={tech} 
+            <div key={index} className="relative w-12 h-12">
+              <Image
+                src={`/images/skill-icons/${tech}.png`}
+                alt={tech}
                 title={tech}
                 fill
                 className="object-contain"
