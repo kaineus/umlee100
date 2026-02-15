@@ -183,6 +183,29 @@ export const worksData: WorkItem[] = [
     images: ['/images/works/event-page/blackfriday-detail.png'],
     technologies: ['Figma', 'Photoshop'],
   },
+  // 배너
+  {
+    id: 'banner-blackfriday',
+    title: '블랙프라이데이 아트굿즈 배너',
+    category: '배너',
+    tags: ['웹사이트', '온라인 쇼핑몰', '배너'],
+    description:
+      '블랙프라이데이 아트굿즈 할인 프로모션을 위한 배너 이미지 제작 작업입니다. 아트굿즈 판매 홈페이지가 아닌, 연계된 그림 렌탈 홈페이지에 노출되는 배너인 만큼 해당 홈페이지의 베이지 톤과 차분한 무드에 맞춰 디자인했습니다. 홈페이지 특성을 고려해 과한 텍스트는 배제하고, 이미지를 중심으로 간결하게 구성했으며 텍스트는 개발 영역에서 적용될 수 있도록 설계했습니다.',
+    thumbnail: '/images/works/banner/1-thumb.png',
+    images: ['/images/works/banner/1-detail.png'],
+    technologies: ['Figma', 'Photoshop'],
+  },
+  {
+    id: 'banner-yearend',
+    title: '아트굿즈 연말결산 배너',
+    category: '배너',
+    tags: ['웹사이트', '온라인 쇼핑몰', '배너'],
+    description:
+      '자사몰에서 진행된 아트굿즈 연말 결산 이벤트 홍보를 위한 히어로 배너 제작 작업입니다. 크리스마스 시즌과 함께 진행된 이벤트인 만큼 빨간색을 메인 컬러로 구성하고, 홈페이지 진입 시 가장 먼저 노출되는 배너 특성을 고려해 이벤트 내용을 직관적으로 전달할 수 있도록 제작했습니다.',
+    thumbnail: '/images/works/banner/2-thumb.png',
+    images: ['/images/works/banner/2-detail.png'],
+    technologies: ['Figma', 'Photoshop'],
+  },
 ];
 
 export const workCategories: WorkCategory[] = [
