@@ -899,6 +899,165 @@ body:has(.sns-detail) footer {
   }
 }
 
+/* ===== Ad Image Page ===== */
+.ad-page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  padding: 3rem 1.5rem 4rem;
+}
+
+.ad-page__intro {
+  max-width: 56rem;
+  margin-bottom: 3.5rem;
+}
+
+.ad-page__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.ad-page__desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin: 0 0 0.25rem;
+}
+
+.ad-page__project {
+  margin-bottom: 2.5rem;
+}
+
+.ad-page__project-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 1rem;
+  letter-spacing: -0.01em;
+}
+
+.ad-page__scroll {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+  cursor: grab;
+}
+
+.ad-page__scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.ad-page__scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+}
+
+.ad-page__scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+
+.ad-page__scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ad-page__card {
+  position: relative;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  height: 260px;
+}
+
+.ad-page__skeleton {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+}
+
+.ad-page__image {
+  display: block;
+  height: 260px;
+  width: auto;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+/* Ad Page Desktop */
+@media (min-width: 992px) {
+  .ad-page {
+    padding: 4rem 2.5rem 5rem;
+  }
+
+  .ad-page__title {
+    font-size: 2.5rem;
+  }
+
+  .ad-page__intro {
+    margin-bottom: 4.5rem;
+  }
+
+  .ad-page__project {
+    margin-bottom: 3.5rem;
+  }
+
+  .ad-page__project-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .ad-page__scroll {
+    gap: 1rem;
+  }
+
+  .ad-page__card {
+    height: 400px;
+  }
+
+  .ad-page__image {
+    height: 400px;
+  }
+}
+
+/* Ad Page Mobile */
+@media (max-width: 767px) {
+  .ad-page {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .ad-page__title {
+    font-size: 1.5rem;
+  }
+
+  .ad-page__desc {
+    font-size: 0.875rem;
+  }
+
+  .ad-page__intro {
+    margin-bottom: 2.5rem;
+  }
+
+  .ad-page__project {
+    margin-bottom: 2rem;
+  }
+
+  .ad-page__project-title {
+    font-size: 1rem;
+  }
+
+  .ad-page__card {
+    height: 200px;
+  }
+
+  .ad-page__image {
+    height: 200px;
+  }
+}
+
 /* ===== Home Page ===== */
 /* When home page is active, reset content-area margin */
 body:has(.home-page) .content-area {
