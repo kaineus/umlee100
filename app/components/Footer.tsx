@@ -19,7 +19,7 @@ export default function Footer() {
             href="mailto:umlee100@naver.com"
             className="text-sm transition-colors duration-300"
             style={{ color: '#999999', display: 'block' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#fb3000')}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = '#999999')}
           >
             umlee100@naver.com

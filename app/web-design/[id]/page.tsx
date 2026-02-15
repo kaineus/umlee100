@@ -132,7 +132,7 @@ export default function WebProjectDetailPage() {
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#000' }}>
         <div className="text-center">
           <h1 className="text-2xl font-semibold mb-4 text-white">로딩 중...</h1>
-          <Link href="/web-design" className="flex items-center justify-center transition-colors duration-300" style={{ color: '#fb3000' }}>
+          <Link href="/web-design" className="flex items-center justify-center transition-colors duration-300" style={{ color: 'var(--color-accent)' }}>
             <FiArrowLeft className="mr-2" /> 웹 디자인 작업 목록으로 돌아가기
           </Link>
         </div>
@@ -312,7 +312,7 @@ function ThumbnailGallery({ images, currentSlide, setCurrentSlide }: { images: s
           onClick={() => setCurrentSlide(idx)}
           className="flex-shrink-0 relative w-20 h-20 rounded-md overflow-hidden transition-all"
           style={{
-            outline: currentSlide === idx ? '0.125rem solid #fb3000' : '0.0625rem solid #333',
+            outline: currentSlide === idx ? '0.125rem solid var(--color-accent)' : '0.0625rem solid #333',
             opacity: currentSlide === idx ? 1 : 0.7,
             transform: currentSlide === idx ? 'scale(1.05)' : 'scale(1)',
           }}

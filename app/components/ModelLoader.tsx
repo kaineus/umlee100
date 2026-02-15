@@ -13,7 +13,7 @@ function Loader() {
   return (
     <Html center>
       <div className="p-4 rounded-lg text-center" style={{ backgroundColor: '#1a1a1a', border: '0.0625rem solid #333' }}>
-        <FaSpinner className="animate-spin mx-auto text-2xl mb-2" style={{ color: '#fb3000' }} />
+        <FaSpinner className="animate-spin mx-auto text-2xl mb-2" style={{ color: 'var(--color-accent)' }} />
         <p className="font-semibold" style={{ color: '#999' }}>모델 로딩중... {progress.toFixed(0)}%</p>
       </div>
     </Html>

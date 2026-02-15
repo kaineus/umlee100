@@ -167,7 +167,7 @@ export default function Header() {
                             onClick={closeMenu}
                             className="transition-colors duration-300"
                             style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.4)' }}
-                            onMouseEnter={(e) => (e.currentTarget.style.color = '#fb3000')}
+                            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}
                             onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
                           >
                             {sub.label}

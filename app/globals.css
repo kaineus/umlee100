@@ -8,8 +8,8 @@
   --color-text: #ffffff;
   --color-text-secondary: #999999;
   --color-text-muted: #666666;
-  --color-accent: #fb3000;
-  --color-accent-hover: #ff0000;
+  --color-accent: #007ACC;       /* sync with app/lib/theme.ts */
+  --color-accent-hover: #005A9E; /* sync with app/lib/theme.ts */
   --color-border: #333333;
   --color-border-light: #222222;
 
