@@ -6,23 +6,23 @@ import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const workSubItems = [
-  { label: '소셜미디어 디자인', href: '/works/social-media' },
-  { label: '제품디자인', href: '/works/product-design' },
-  { label: '3D 작업', href: '/works/3d' },
-  { label: '컨텐츠디자인', href: '/works/content-design' },
+  { label: '상세페이지', href: '/works/detail-page' },
+  { label: '이벤트 페이지', href: '/works/event-page' },
+  { label: 'SNS 컨텐츠', href: '/works/sns-content' },
+  { label: '광고 이미지', href: '/works/ad-image' },
+  { label: '배너', href: '/works/banner' },
 ];
 
 const navItems = [
-  { label: '어바웃', href: '/about' },
+  { label: '프로필', href: '/profile' },
   { label: '작업물', href: '/works', children: workSubItems },
-  { label: '경력', href: '/career' },
-  { label: '연락처', href: '/contact' },
 ];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
+  const isHome = pathname === '/';
   const isWorksActive = pathname.startsWith('/works');
 
   useEffect(() => {
@@ -36,6 +36,8 @@ export default function Header() {
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const closeMenu = () => setIsOpen(false);
+
+  if (isHome) return null;
 
   return (
     <>
@@ -61,7 +63,7 @@ export default function Header() {
                       <Link
                         key={sub.href}
                         href={sub.href}
-                        data-active={pathname === sub.href ? 'true' : undefined}
+                        data-active={pathname.startsWith(sub.href) ? 'true' : undefined}
                       >
                         {sub.label}
                       </Link>
