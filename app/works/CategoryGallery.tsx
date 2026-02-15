@@ -11,7 +11,7 @@ function GalleryCard({ work }: { work: WorkItem }) {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <Link href={`/works/${categoryToSlug[work.category]}/${work.id}`} className="gallery-card">
+    <Link href={`/works/${categoryToSlug[work.category]}/${work.id}`} className={`gallery-card ${work.category === 'SNS 컨텐츠' ? 'gallery-card--portrait' : ''}`}>
       {!loaded && <div className="skeleton" style={{ position: 'absolute', inset: 0 }} />}
       <Image
         src={work.thumbnail}
