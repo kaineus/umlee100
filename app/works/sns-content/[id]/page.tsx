@@ -1,1 +1,1 @@
-export { default } from '../../WorkDetailClient';
+export { default } from '../../SnsDetailClient';
