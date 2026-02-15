@@ -5,20 +5,21 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import type { WorkItem } from '../data/works';
+import { categoryToSlug } from '../data/works';
 
 function GalleryCard({ work }: { work: WorkItem }) {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <Link href={`/works/${work.id}`} className="gallery-card">
+    <Link href={`/works/${categoryToSlug[work.category]}/${work.id}`} className="gallery-card">
       {!loaded && <div className="skeleton" style={{ position: 'absolute', inset: 0 }} />}
       <Image
         src={work.thumbnail}
         alt={work.title}
         fill
-        sizes="(max-width: 767px) 50vw, 25vw"
+        sizes="(max-width: 767px) 50vw, (max-width: 1439px) 33vw, (max-width: 2559px) 25vw, 20vw"
         className="object-cover"
-        style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
+        style={{ opacity: loaded ? 1 : 0 }}
         onLoad={() => setLoaded(true)}
       />
       <div className="gallery-card__overlay">
